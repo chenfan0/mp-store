@@ -1,4 +1,4 @@
-# Mini-Store
+# Cf-Mp-Store
 
 **一个响应式的小程序全局状态管理库**
 
@@ -7,19 +7,19 @@
 ### 1.安装依赖
 
 ``` 
-npm install cf-mini-store
+npm install cf-mp-store
 
-yarn add cf-mini-store
+yarn add cf-mp-store
 
-pnpm add cf-mini-store
+pnpm add cf-mp-store
 ```
 
 ### 2.创建store对象
 
 ```ts
-import MiniStore from 'cf-mini-store'
+import MpStore from 'cf-mp-store'
 
-const userStore = new MiniStore({
+const userStore = new MpStore({
   state: {
     name: 'userStore'
   },
@@ -81,9 +81,9 @@ store.useData(instance, options: OptionsType)
   - 很多时候我们都会先在state中定义空数据，然后再调用dispatch去发送网络请求并且将请求结果保存到之前定义的空数据中，那么这个时候我们就可以将immediate设置为false。
 
 ```ts
-import MiniStore from 'cf-mini-store'
+import MpStore from 'cf-mp-store'
 
-const userStore = new MiniStore({
+const userStore = new MpStore({
   state: {
     list: []
   },
@@ -117,9 +117,9 @@ Page({
   - 当我们需要对引入的state的key进行重命名时，可以通过传递cb参数实现。
 
 ```ts
-import MiniStore from 'cf-mini-store'
+import MpStore from 'cf-mp-store'
 
-const userStore = new MiniStore({
+const userStore = new MpStore({
   state: {
     name: 'userStore'
   }

@@ -1,7 +1,7 @@
 {
-  "name": "mini-store",
+  "name": "cf-mp-store",
   "version": "1.0.0",
-  "description": "",
+  "description": "a miniProgram store",
   "main": "./dist/bundle.cjs.js",
   "module": "./dist/bundle.esm.js",
   "types": "./dist/index.d.ts",
@@ -15,9 +15,10 @@
     "dev": "rollup -c -w",
     "test": "vitest"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": "https://github.com/chenfan0/mp-store",
+  "keywords": ["miniProgram", "store", "小程序", "状态管理", "响应式"],
+  "author": "chenfan",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
