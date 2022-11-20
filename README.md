@@ -95,19 +95,20 @@ const userStore = new MpStore({
     }
   }
 })
-
+```
+```ts
 // 小程序ts文件
+import userStore from 'xxx'
 Page({
   data: {},
   onLoad: {
     userStore.useData(this, {
-    	useKeys: ['list'],
-  		immediate: false
-  	})
-		// immediate为false，所以这里的时候，data中并没有list数据
-		
-		// 调用dispatch去发送网络请求，然后再将结果保存到store中。修改了state.list值，会执行this.setData()
-		userStore.dispatch('fetchList')
+      useKeys: ['list'],
+      immediate: false
+    })
+    // immediate为false，所以这里的时候，data中并没有list数据
+    // 调用dispatch去发送网络请求，然后再将结果保存到store中。修改了state.list值，会执行this.setData()
+    userStore.dispatch('fetchList')
   }
 })
 ```
@@ -130,14 +131,14 @@ Page({
   data: {},
   onLoad: {
     userStore.useData(this, {
-    	useKeys: ['name'],
-  		cb: (key, value) => {
-  			const newKey = `${key}123`  // name123
-  			this.setData({
+      useKeys: ['name'],
+      cb: (key, value) => {
+        const newKey = `${key}123`  // name123
+        this.setData({
           [newKey]: value
         })
-			}
-  	})
+      }
+    })
   }
 })
 ```
