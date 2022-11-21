@@ -463,3 +463,50 @@ test('使用多个store(cb)', () => {
   expect(cbSpy).toHaveBeenCalledTimes(7)
 })
 
+test("第一个store没有传递cb，第二个store传递cb，都可以正常运行", () => {
+  
+  const market = {
+    setData(value) {
+      this.data = {
+        ...this.data,
+        ...value
+      }
+    },
+    cb(key, value) {
+      console.log(key, value);
+    }
+  }
+  const cbSpy = vi.spyOn(market, 'cb')
+  const setDataSpy = vi.spyOn(market, 'setData')
+  const thisValue: ThisValueType = getThisValue({}, setDataSpy)
+  
+  const userStore = new MiniStore({
+    state: {
+      name: 'userStore',
+      age: 18,
+      id: '001'
+    },
+    actions: {
+      changeNameAction(state, newName: string) {
+        state.name = newName
+      }
+    }
+  })
+  const dummyStore = new MiniStore({
+    state: {
+      friends: ['a', 'b', 'c']
+    },
+    actions: {
+      changeFriendsAction(state, newFriends: any) {
+        state.friends = newFriends
+      }
+    }
+  })
+  userStore.useData(thisValue, { useKeys: ['name'], immediate: false })
+  dummyStore.useData(thisValue, { total: true, cb: cbSpy })
+  userStore.dispatch('changeNameAction')
+  
+  expect(cbSpy).toHaveBeenCalledTimes(1)
+  expect(setDataSpy).toHaveBeenCalledTimes(1)
+})
+

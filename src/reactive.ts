@@ -43,7 +43,7 @@ function trigger(target: ObjType, key: ObjKey, newValue: unknown) {
   const keyMap = targetMap.get(key)
   if (!keyMap) return
   keyMap.forEach((effect) => {
-    if (effect.__cb__Map) {
+    if (effect.__cb__Map && effect.__cb__Map.get(target)) {
       const cb = effect.__cb__Map.get(target)
       cb && cb(key, newValue)
     } else {
