@@ -105,7 +105,11 @@ class MiniStore<StateT extends ObjType, ActionT extends ObjType> {
     if (typeof this.actions[actionKey] !== 'function') {
       throw new Error(`${String(actionKey)}对应的value不是一个函数`)
     } else {
-      this.actions[actionKey].call(null, this.state, ...args)
+      this.actions[actionKey].call(
+        this as unknown as { state: any; actions: any },
+        this.state,
+        ...args
+      )
     }
     enableTrack()
   }

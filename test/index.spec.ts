@@ -503,10 +503,31 @@ test("第一个store没有传递cb，第二个store传递cb，都可以正常运
     }
   })
   userStore.useData(thisValue, { useKeys: ['name'], immediate: false })
-  dummyStore.useData(thisValue, { total: true, cb: cbSpy })
-  userStore.dispatch('changeNameAction')
+  dummyStore.useData(thisValue, { useKeys: ['friends'], cb: cbSpy, immediate: false })
+  dummyStore.dispatch('changeFriendsAction')
+  userStore.dispatch('changeNameAction', 'aaa')
+  
   
   expect(cbSpy).toHaveBeenCalledTimes(1)
   expect(setDataSpy).toHaveBeenCalledTimes(1)
+})
+
+test("action中的this为store对象", () => {
+  const testStore = new MiniStore({
+    state: {
+
+    },
+    actions: {
+      test(state) {
+        // actions.abc()
+        this.actions.abc()
+      },
+      abc() {
+        console.log('abc');
+        
+      }
+    }
+  })
+  testStore.dispatch('test')
 })
 

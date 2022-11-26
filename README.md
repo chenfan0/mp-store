@@ -24,7 +24,8 @@ const userStore = new MpStore({
     name: 'userStore'
   },
   actions: {
-    changeNameAction(state, newName: string) {
+    changeNameAction({state, actions}, newName: string) {
+      // this为store对象
       state.name = newName
     }
   }
@@ -88,7 +89,7 @@ const userStore = new MpStore({
     list: []
   },
   actions: {
-    async fetchList(state, ...args) {
+    async fetchList({ actions, state }, ...args) {
       // 发送网络请求
       const res = await getList()
       state.list = res.list

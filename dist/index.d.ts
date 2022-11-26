@@ -1,4 +1,4 @@
-import type { ObjType, OptionsType, ThisValueType, ValueType } from "./typing";
+import type { ObjType, OptionsType, ThisValueType, ValueType } from './typing';
 declare class MiniStore<StateT extends ObjType, ActionT extends ObjType> {
     private state;
     private actions?;

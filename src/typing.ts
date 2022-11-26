@@ -9,7 +9,11 @@ export interface ThisValueType {
 }
 
 export type ActionsType<StateT, ActionT> = {
-  [key in keyof ActionT]: (state: StateT, ...args: any[]) => any
+  [key in keyof ActionT]: (
+    this: { state: any; actions: any },
+    state: StateT,
+    ...args: any[]
+  ) => any
 }
 
 export interface ValueType<StateT, ActionT> {
